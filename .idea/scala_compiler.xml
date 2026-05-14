@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaCompilerConfiguration">
+    <option name="separateProdTestSources" value="true" />
+    <profile name="sbt 1" modules="Parallel_Processing,Parallel_Processing.main,Parallel_Processing.test,spark-logger,spark-logger-root,spark-logger-root.main,spark-logger-root.multi-machine-parallel-processing,spark-logger-root.multi-machine-parallel-processing.main,spark-logger-root.multi-machine-parallel-processing.test,spark-logger-root.spark-logger,spark-logger-root.spark-logger.main,spark-logger-root.spark-logger.test,spark-logger-root.test,spark-logger.main,spark-logger.test" />
+  </component>
+</project>
