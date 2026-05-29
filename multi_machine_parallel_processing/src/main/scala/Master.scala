@@ -24,7 +24,8 @@ object Master {
     // ---- single listener thread that accepts executor connections ----
     val incoming = new LinkedBlockingQueue[Socket]()
     val listener = new Thread(new Runnable {
-      override def run(): Unit = {
+      override def run():
+      Unit = {
         var connected = 0
         while (connected < NumExecutors) {
           val s = server.accept()

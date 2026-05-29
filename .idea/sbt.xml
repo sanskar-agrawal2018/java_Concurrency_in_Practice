@@ -8,12 +8,18 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/chapter_2" />
+            <option value="$PROJECT_DIR$/chapter_3" />
+            <option value="$PROJECT_DIR$/chapter_4" />
+            <option value="$PROJECT_DIR$/chapter_5" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/jvm_configuration" />
             <option value="$PROJECT_DIR$/multi_machine_parallel_processing" />
             <option value="$PROJECT_DIR$/project" />
+            <option value="$PROJECT_DIR$/scala_learning" />
           </set>
         </option>
-        <option name="sbtVersion" value="1.12.11" />
+        <option name="sbtVersion" value="1.11.5" />
         <option name="separateProdAndTestSourcesIsExplicit" value="true" />
       </SbtProjectSettings>
     </option>
