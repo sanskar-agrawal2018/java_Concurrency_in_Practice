@@ -9,6 +9,7 @@ object FuturesAsync {
   private def demoScalaFuture(): Unit = {
     println("[ScalaFuture] starting demo")
     val f: Future[Int] = Future {
+      println(s"[ScalaFuture][${Thread.currentThread().getName}] computing value...")
       Thread.sleep(300)
       21 * 2
     }
@@ -16,17 +17,17 @@ object FuturesAsync {
     val mapped: Future[String] = f.map(v => s"result=$v")
 
     mapped.onComplete { either =>
-      println(s"[ScalaFuture] onComplete: $either")
+      println(s"[ScalaFuture][${Thread.currentThread().getName}] onComplete: $either")
     }
 
     // For demo only: block briefly to show the result (avoid blocking in real apps)
     val r = Await.result(mapped, 1.second)
-    println(s"[ScalaFuture] Await.result(mapped) = $r")
+    println(s"[ScalaFuture][${Thread.currentThread().getName}] Await.result(mapped) = $r")
   }
 
   // Demo 2: Promise that we complete from another async task
   private def demoPromise(): Unit = {
-    println("\n[Promise] starting demo")
+    println(s"[Promise][${Thread.currentThread().getName}] starting demo")
     val p = Promise[String]()
     val fut = p.future
 
@@ -67,6 +68,7 @@ object FuturesAsync {
   }
 
   def main(args: Array[String]): Unit = {
+    println(s"[main] Main thread: ${Thread.currentThread().getName}")
     demoScalaFuture()
     demoPromise()
     demoJavaCompletableFuture()

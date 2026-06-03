@@ -5,7 +5,7 @@ ThisBuild / scalaVersion := "2.13.16"
 resolvers += Resolver.mavenLocal
 
 lazy val root = (project in file("."))
-  .aggregate(core, multiMachine, chapter2, chapter3, chapter4, chapter5, chapter6, jvmConfiguration)
+  .aggregate(core, multiMachine, chapter2, chapter3, chapter4, chapter5, chapter6, chapter7, jvmConfiguration)
   .settings(
     name := "parallel-processing-examples",
     publish / skip := true
@@ -70,6 +70,14 @@ lazy val chapter6 = (project in file("chapter_6"))
   .settings(
     name := "chapter-6",
     Compile / mainClass := Some("ExecutorDemo"),
+    fork := true,
+    connectInput := true
+  )
+
+lazy val chapter7 = (project in file("chapter_7"))
+  .settings(
+    name := "chapter-7",
+    Compile / mainClass := Some("ThreadPoolInterruptionDemo"),
     fork := true,
     connectInput := true
   )

@@ -66,7 +66,7 @@ object CompletableFutureCompletionDemo {
           () => {
             println(s"[${Thread.currentThread().getName}] starting ${work.name} (${work.delayMillis}ms)")
             cfSleep(work.delayMillis)
-            WorkCF(work.name, work.delayMillis, Thread.currentThread().getName)
+            WorkResult(work.name, work.delayMillis, Thread.currentThread().getName)
           },
           pool
         )
@@ -179,7 +179,7 @@ object CompletableFutureCompletionDemo {
         if (ex == null) {
           // First successful completion wins the race.
           winner.complete(result)
-        } else {
+        } else if (!winner.isDone) {
           val cause = if (ex.getCause != null) ex.getCause else ex
           println(s"ignoring failed attempt: ${cause.getMessage}")
           // If all futures have failed, complete exceptionally.
@@ -187,6 +187,7 @@ object CompletableFutureCompletionDemo {
             winner.completeExceptionally(new RuntimeException("all attempts failed", cause))
           }
         }
+        ()
       }
     }
 
@@ -241,5 +242,3 @@ object CompletableFutureCompletionDemo {
       new Thread(r, s"$prefix-${id.getAndIncrement()}")
   }
 }
-
-final case class WorkCF(name: String, delayMillis: Long, threadName: String)

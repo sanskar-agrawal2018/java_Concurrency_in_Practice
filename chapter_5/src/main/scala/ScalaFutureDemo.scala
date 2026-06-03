@@ -28,7 +28,10 @@ object ScalaFutureDemo {
       21
     }
 
+
+
     val doubled: Future[Int] = number.map(value => value * 2)
+
 
     doubled.onComplete {
       case Success(value) => log(s"callback received success: $value")
