@@ -79,7 +79,11 @@ lazy val chapter7 = (project in file("chapter_7"))
     name := "chapter-7",
     Compile / mainClass := Some("ThreadPoolInterruptionDemo"),
     fork := true,
-    connectInput := true
+    connectInput := true,
+    libraryDependencies ++= Seq(
+      "net.java.dev.jna" % "jna" % "5.14.0",
+      "org.scalatest" %% "scalatest" % "3.2.15" % Test
+    )
   )
 
 

@@ -51,6 +51,34 @@ object RunnableVsCallableDemo {
     demoCallableWithFutureTask()
     separator()
     demoCompletionService()
+    separator()
+    demoExectorSubmitRunnableWithException()
+
+  }
+
+
+  private  def demoExectorSubmitRunnableWithException(): Unit = {
+    println("DEMO 6: submit(Runnable) with exception - Future.get() throws ExecutionException")
+    println("=" * 78)
+
+    val pool = singleThreadExecutor("executor-runnable-exception-thread")
+    try {
+      val runnable: Runnable = () => {
+        Thread.sleep(100)
+        throw new RuntimeException("Runnable failure is captured by Future")
+      }
+
+      val future: Future[_] = pool.submit(runnable)
+
+      try {
+        future.get()
+      } catch {
+        case e: ExecutionException =>
+          println(s"[main] failed Runnable came back through ExecutionException: ${e.getCause}")
+      }
+    } finally {
+      shutdown(pool)
+    }
   }
 
   private def demoRunnableOnThread(): Unit = {
